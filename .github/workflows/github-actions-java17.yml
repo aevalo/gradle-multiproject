@@ -1,3 +1,5 @@
+name: Java 17 build
+on: [push]
 steps:
   - uses: actions/checkout@v4
   - uses: actions/setup-java@v3
