@@ -6,6 +6,10 @@ build
 **/build/
 !src/**/build/
 
+# Ignore Gradle binary output directory
+bin
+**/bin/
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
