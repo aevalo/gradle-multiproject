@@ -13,6 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+import java.io.Console;
 
 public class App {
   public static void main(String[] args) {
@@ -23,12 +24,20 @@ public class App {
     printLocale("US locale", Locale.US);
     printLocale("UK locale", Locale.UK);
     printLocale("France locale", Locale.FRANCE);
-    List<Locale> sortedLocales = Arrays.stream(Locale.getAvailableLocales())
-      .sorted(Comparator.comparing(Locale::toString))
-      .collect(Collectors.toList());
-    System.out.println("Available locales:");
-    for (Locale locale : sortedLocales) {
-      printLocale("Locale", locale);
+    Console console = System.console();
+    if (console != null) {
+      console.printf("Do you want to see all available locales? (y/n): ");
+      String answer = console.readLine();
+      console.printf("Answer given: %s%n", answer);
+      if (answer.toLowerCase().equals("y")) {
+        List<Locale> sortedLocales = Arrays.stream(Locale.getAvailableLocales())
+          .sorted(Comparator.comparing(Locale::toString))
+          .collect(Collectors.toList());
+        System.out.println("Available locales:");
+        for (Locale locale : sortedLocales) {
+          printLocale("Locale", locale);
+        }
+      }
     }
     LinkedList tokens;
     tokens = split(getMessage());
