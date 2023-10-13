@@ -3,8 +3,16 @@ plugins {
   id 'java'
 }
 
-sourceCompatibility = 17
-targetCompatibility = 17
+// Set toolchain
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(11)
+    vendor = JvmVendorSpec.ADOPTIUM
+  }
+  // Source and taget compatibility
+  //sourceCompatibility = 11
+  //targetCompatibility = 11
+}
 
 repositories {
   // Use Maven Central for resolving dependencies.
@@ -30,5 +38,33 @@ test {
       outputPerTestCase = true
       mergeReruns = true
     }
+  }
+}
+
+abstract class CustomTaskUsingToolchains extends DefaultTask {
+  @Nested
+  abstract Property<JavaLauncher> getLauncher()
+
+  CustomTaskUsingToolchains() {
+    def toolchain = project.extensions.getByType(JavaPluginExtension.class).toolchain
+    Provider<JavaLauncher> defaultLauncher = getJavaToolchainService().launcherFor(toolchain)
+    launcher.convention(defaultLauncher)
+  }
+
+  @TaskAction
+  def showConfiguredToolchain() {
+    println launcher.get().executablePath
+    println launcher.get().metadata.installationPath
+  }
+
+  @Inject
+  protected abstract JavaToolchainService getJavaToolchainService()
+}
+
+tasks.register('showDefaultToolchain', CustomTaskUsingToolchains)
+
+tasks.register('showCustomToolchain', CustomTaskUsingToolchains) {
+  launcher = javaToolchains.launcherFor {
+    languageVersion = JavaLanguageVersion.of(17)
   }
 }
