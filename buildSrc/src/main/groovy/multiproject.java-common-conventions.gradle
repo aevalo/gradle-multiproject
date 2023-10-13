@@ -3,6 +3,9 @@ plugins {
   id 'java'
 }
 
+sourceCompatibility = 17
+targetCompatibility = 17
+
 repositories {
   // Use Maven Central for resolving dependencies.
   mavenCentral()
@@ -11,6 +14,7 @@ repositories {
 dependencies {
   constraints {
     implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'com.typesafe:config:1.4.2'
   }
   testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 }
