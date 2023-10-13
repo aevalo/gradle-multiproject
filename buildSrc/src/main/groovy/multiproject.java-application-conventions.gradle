@@ -2,3 +2,8 @@ plugins {
   id 'multiproject.java-common-conventions'
   id 'application'
 }
+
+distTar {
+  compression = Compression.GZIP
+  archiveExtension = "tar.gz"
+}

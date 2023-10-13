@@ -1,4 +1,4 @@
-package test;
+package multiproject.app;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -20,8 +20,7 @@ public class XMLResourceBundleControl extends ResourceBundle.Control {
 
   @Override
   public ResourceBundle newBundle(String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
-    throws IllegalAccessException, InstantiationException, IOException {
-
+    throws IOException {
     if ((baseName == null) || (locale == null) || (format == null) || (loader == null)) {
       throw new IllegalArgumentException("baseName, locale, format and loader cannot be null");
     }
@@ -45,11 +44,9 @@ public class XMLResourceBundleControl extends ResourceBundle.Control {
       urlconnection.setUseCaches(false);
     }
 
-    try ( 	final InputStream stream = urlconnection.getInputStream();
-           final BufferedInputStream bis = new BufferedInputStream(stream);
-    ) {
-      final ResourceBundle bundle = new XMLResourceBundle(bis);
-      return bundle;
+    try (final InputStream stream = urlconnection.getInputStream();
+         final BufferedInputStream bis = new BufferedInputStream(stream)) {
+      return new XMLResourceBundle(bis);
     }
   }
 
@@ -57,5 +54,4 @@ public class XMLResourceBundleControl extends ResourceBundle.Control {
   public List<String> getFormats(String baseName) {
     return SINGLETON_LIST;
   }
-
 }

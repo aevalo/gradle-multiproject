@@ -8,11 +8,7 @@ import static multiproject.app.MessageUtils.getMessage;
 
 import org.apache.commons.text.WordUtils;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.io.Console;
 import java.io.IOException;
@@ -47,6 +43,12 @@ public class App {
         }
       }
     }
+
+    printLabels("Default", null);
+    printLabels("Root", Locale.ROOT);
+    printLabels("English", Locale.ENGLISH);
+    printLabels("French", Locale.FRENCH);
+
     LinkedList tokens;
     tokens = split(getMessage());
     String result = join(tokens);
@@ -69,6 +71,17 @@ public class App {
       .setVariant(prop.getProperty("app.defaultVariant"))
       .setScript(prop.getProperty("app.defaultScript"))
       .build();
+  }
+
+  private static void printLabels(String label, Locale targetLocale) {
+    Labels labels = Optional
+      .ofNullable(targetLocale)
+      .map(Labels::new)
+      .orElse(new Labels());
+    System.out.printf("%s labels%n", label);
+    System.out.printf("myKey1: %s%n", labels.myKey1());
+    System.out.printf("myKey2: %s%n", labels.myKey2());
+    System.out.printf("myKey3: %s%n", labels.myKey3());
   }
 
   private static void printLocale(String label, Locale locale) {

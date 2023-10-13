@@ -6,6 +6,7 @@ dependencies {
   implementation 'org.apache.commons:commons-text'
   implementation 'com.typesafe:config'
   implementation project(':utilities')
+  implementation project(':resourcebundle')
 }
 
 application {
