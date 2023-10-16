@@ -3,6 +3,10 @@ plugins {
   id 'application'
 }
 
+application {
+  applicationDefaultJvmArgs = ['-Dgreeting.language=en']
+}
+
 distTar {
   compression = Compression.GZIP
   archiveExtension = "tar.gz"

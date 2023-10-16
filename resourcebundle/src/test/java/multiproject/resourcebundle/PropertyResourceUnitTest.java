@@ -7,9 +7,15 @@ import java.util.ResourceBundle;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * PropertyResourceUnitTest
+ */
 public class PropertyResourceUnitTest {
+  /**
+   * Test loading resource bundle for Polish locale with US default locale
+   */
   @Test
-  public void givenLocaleUsAsDefualt_whenGetBundleForLocalePlPl_thenItShouldContain3ButtonsAnd1Label() {
+  public void givenLocaleUsAsDefault_whenGetBundleForLocalePlPl_thenItShouldContain3ButtonsAnd1Label() {
     Locale locale = Locale.getDefault();
     Locale.setDefault(Locale.US);
 
@@ -20,8 +26,11 @@ public class PropertyResourceUnitTest {
     Locale.setDefault(locale);
   }
 
+  /**
+   * Test loading resource bundle for French locale with US default locale
+   */
   @Test
-  public void givenLocaleUsAsDefualt_whenGetBundleForLocaleFrFr_thenItShouldContainKeys1To3AndKey4() {
+  public void givenLocaleUsAsDefault_whenGetBundleForLocaleFrFr_thenItShouldContainKeys1To3AndKey4() {
     Locale locale = Locale.getDefault();
 
     Locale.setDefault(Locale.US);
@@ -33,8 +42,11 @@ public class PropertyResourceUnitTest {
     Locale.setDefault(locale);
   }
 
+  /**
+   * Test loading resource bundle for French locale with Chinese default locale
+   */
   @Test
-  public void givenLocaleChinaAsDefualt_whenGetBundleForLocaleFrFr_thenItShouldOnlyContainKeys1To3() {
+  public void givenLocaleChinaAsDefault_whenGetBundleForLocaleFrFr_thenItShouldOnlyContainKeys1To3() {
     Locale locale = Locale.getDefault();
 
     Locale.setDefault(Locale.CHINA);
@@ -46,6 +58,9 @@ public class PropertyResourceUnitTest {
     Locale.setDefault(locale);
   }
 
+  /**
+   * Test loading resource bundle for French locale with Chinese default locale and example controller
+   */
   @Test
   public void givenLocaleChinaAsDefualt_whenGetBundleForLocaleFrFrAndExampleControl_thenItShouldOnlyContainKey5() {
     Locale locale = Locale.getDefault();
@@ -59,6 +74,9 @@ public class PropertyResourceUnitTest {
     Locale.setDefault(locale);
   }
 
+  /**
+   * Test loading resource bundle for French locale with default locale and system file encoding
+   */
   @Test
   public void givenValuesDifferentlyEncoded_whenGetBundleForLocalePlPl_thenItShouldContain3ButtonsAnd1Label() {
     Locale locale = Locale.getDefault();

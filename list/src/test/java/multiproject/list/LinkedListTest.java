@@ -3,12 +3,21 @@ package multiproject.list;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * LinkedListTest
+ */
 class LinkedListTest {
+  /**
+   * Test linked list constructor
+   */
   @Test void testConstructor() {
     LinkedList list = new LinkedList();
     assertEquals(0, list.size());
   }
 
+  /**
+   * Test adding elements
+   */
   @Test void testAdd() {
     LinkedList list = new LinkedList();
 
@@ -21,6 +30,9 @@ class LinkedListTest {
     assertEquals("two", list.get(1));
   }
 
+  /**
+   * Test removing elements
+   */
   @Test void testRemove() {
     LinkedList list = new LinkedList();
 
@@ -35,6 +47,9 @@ class LinkedListTest {
     assertEquals(0, list.size());
   }
 
+  /**
+   * Test removing missing element
+   */
   @Test public void testRemoveMissing() {
     LinkedList list = new LinkedList();
 

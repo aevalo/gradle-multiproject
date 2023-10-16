@@ -1,20 +1,31 @@
 package multiproject.app;
 
-import multiproject.list.LinkedList;
-
+import static multiproject.app.MessageUtils.getMessage;
 import static multiproject.utilities.StringUtils.join;
 import static multiproject.utilities.StringUtils.split;
-import static multiproject.app.MessageUtils.getMessage;
 
 import org.apache.commons.text.WordUtils;
+
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
+import multiproject.list.LinkedList;
+
+import multiproject.XMLResourceBundleControl;
+
+/**
+ * App
+ */
 public class App {
+  /**
+   * Main method
+   * @param args command line arguments
+   */
   public static void main(String[] args) {
     Locale defaultLocale = defaultLocaleFromResource();
     printLocale("Default locale", Locale.getDefault());
@@ -44,17 +55,28 @@ public class App {
       }
     }
 
-    printLabels("Default", null);
-    printLabels("Root", Locale.ROOT);
-    printLabels("English", Locale.ENGLISH);
-    printLabels("French", Locale.FRENCH);
+    System.out.println("Root labels:");
+    Labels labels = new Labels();
+    labels.showAllRootKeys();
 
     LinkedList tokens;
     tokens = split(getMessage());
     String result = join(tokens);
     System.out.println(WordUtils.capitalize(result));
+
+    tokens = split(getMessage(Locale.ROOT));
+    result = join(tokens);
+    System.out.println(WordUtils.capitalize(result));
+
+    tokens = split(getMessage(Locale.FRENCH));
+    result = join(tokens);
+    System.out.println(WordUtils.capitalize(result));
   }
 
+  /**
+   * Generates default locale from resource file
+   * @return generated locale
+   */
   private static Locale defaultLocaleFromResource() {
     Properties prop = new Properties();
     Locale.Builder builder = new Locale.Builder();
@@ -73,17 +95,11 @@ public class App {
       .build();
   }
 
-  private static void printLabels(String label, Locale targetLocale) {
-    Labels labels = Optional
-      .ofNullable(targetLocale)
-      .map(Labels::new)
-      .orElse(new Labels());
-    System.out.printf("%s labels%n", label);
-    System.out.printf("myKey1: %s%n", labels.myKey1());
-    System.out.printf("myKey2: %s%n", labels.myKey2());
-    System.out.printf("myKey3: %s%n", labels.myKey3());
-  }
-
+  /**
+   * Prints information about locale
+   * @param label label used for locale
+   * @param locale locale to print information about
+   */
   private static void printLocale(String label, Locale locale) {
     System.out.printf("%s: %s%n\tName: %s%n", label, locale, locale.getDisplayName());
     if (!locale.getLanguage().isBlank()) {

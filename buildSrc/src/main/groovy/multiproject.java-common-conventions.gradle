@@ -9,11 +9,16 @@ java {
     languageVersion = JavaLanguageVersion.of(11)
     vendor = JvmVendorSpec.ADOPTIUM
   }
-  // Source and taget compatibility
-  //sourceCompatibility = 11
-  //targetCompatibility = 11
 }
 
+tasks.withType(JavaCompile).configureEach {
+    //enable compilation in a separate daemon process
+    //options.fork = true
+    // Source and taget compatibility
+    sourceCompatibility = 11
+    targetCompatibility = 11
+    options.compilerArgs << "-Xlint:all" << "-Xdoclint:all"
+}
 repositories {
   // Use Maven Central for resolving dependencies.
   mavenCentral()

@@ -8,7 +8,13 @@ import java.util.ResourceBundle;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * ExampleResourceUnitTest
+ */
 public class ExampleResourceUnitTest {
+  /**
+   * Test loading resource bundle with pl_PL locale
+   */
   @Test
   public void whenGetBundleExampleResourceForLocalePlPl_thenItShouldInheritPropertiesGreetingAndLanguage() {
     Locale plLocale = new Locale("pl", "PL");
@@ -22,6 +28,9 @@ public class ExampleResourceUnitTest {
     assertArrayEquals(exampleBundle.getStringArray("cities"), new String[] { "Warsaw", "Cracow" });
   }
 
+  /**
+   * Test loading resource bundle with en_US locale
+   */
   @Test
   public void whenGetBundleExampleResourceForLocaleUs_thenItShouldContainOnlyGreeting() {
     Locale usLocale = Locale.US;

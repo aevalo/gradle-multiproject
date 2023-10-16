@@ -1,6 +1,18 @@
 package multiproject.list;
+
+/**
+ * LinkedList
+ */
 public class LinkedList {
+  /**
+   * Head node for the linked list
+   */
   private Node head;
+
+  /**
+   * Add new element to the linked list
+   * @param element element to add
+   */
   public void add(String element) {
     Node newNode = new Node(element);
 
@@ -12,6 +24,11 @@ public class LinkedList {
     }
   }
 
+  /**
+   * Get tail element for linked list
+   * @param head head element to start from
+   * @return tail element for the linked list
+   */
   private static Node tail(Node head) {
     Node it;
 
@@ -20,6 +37,11 @@ public class LinkedList {
     return it;
   }
 
+  /**
+   * Remove element from the linked list
+   * @param element element to remove
+   * @return true if element was found, false otherwise
+   */
   public boolean remove(String element) {
     boolean result = false;
     Node previousIt = null;
@@ -35,6 +57,11 @@ public class LinkedList {
     return result;
   }
 
+  /**
+   * Unlink an element from the linked list
+   * @param previousIt previous element
+   * @param currentIt current element to remove
+   */
   private void unlink(Node previousIt, Node currentIt) {
     if (currentIt == head) {
       head = currentIt.next;
@@ -43,6 +70,10 @@ public class LinkedList {
     }
   }
 
+  /**
+   * Size of the linked list
+   * @return number of elements in the list
+   */
   public int size() {
     int size = 0;
 
@@ -51,6 +82,12 @@ public class LinkedList {
     return size;
   }
 
+  /**
+   * Get element of linked list at given element
+   * @param index index to the requested element
+   * @return element at given index
+   * @throws IndexOutOfBoundsException when index is out of bounds for the linked list
+   */
   public String get(int index) {
     Node it = head;
     while (index > 0 && it != null) {
@@ -65,10 +102,23 @@ public class LinkedList {
     return it.data;
   }
 
+  /**
+   * Node - private class representing node in the linked list
+   */
   private static class Node {
+    /**
+     * Data for given node
+     */
     final String data;
+    /**
+     * Reference to the next element in the list
+     */
     Node next;
 
+    /**
+     * Construct new node for linked list
+     * @param data data for the node
+     */
     Node(String data) {
       this.data = data;
     }

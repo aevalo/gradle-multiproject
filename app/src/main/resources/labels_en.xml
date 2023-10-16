@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-  <comment>Labels in engineering English</comment>
-  <entry key="appMessage">hello      world</entry>
+  <comment>Labels in English</comment>
+  <entry key="appMessage">Hello      World!</entry>
 </properties>
